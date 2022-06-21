@@ -23,7 +23,6 @@ namespace MWD
         private void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<MainWindow>();
-            services.AddTransient<GreetingService>();
             services.AddTransient<MainWindowViewModel>();
         }
 

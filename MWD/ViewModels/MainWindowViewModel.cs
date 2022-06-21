@@ -1,6 +1,7 @@
 ﻿using MWD.Commands;
 using MWD.Models;
 using MWD.Services;
+using MWD.Views;
 
 namespace MWD.ViewModels
 {
@@ -25,12 +26,30 @@ namespace MWD.ViewModels
 			set => Set(ref _winTitle, value);
 		}
 
-		public LambdaCommand GetGreetingCommand { get; set; }
+		
 
-		public MainWindowViewModel(GreetingService greetingService)
+
+		public LambdaCommand GotoAPproval { get; set; }
+		public LambdaCommand GotoNotification { get; set; }
+		public LambdaCommand GotoMetting { get; set; }
+
+
+		public MainWindowViewModel()
 		{
-			_greetingService = greetingService;
-			GetGreetingCommand = new LambdaCommand((o) => true, (o) => { Greeting = _greetingService.GetGreeting(); });
+			GotoNotification = new LambdaCommand((o) => true, (o) => {
+				Notification notification = new Notification();
+				notification.Show();
+			});
+
+			GotoMetting = new LambdaCommand((o) => true, (o) => {
+				Meeting meeting = new Meeting();
+				meeting.Show();
+			});
+			GotoAPproval = new LambdaCommand((o) => true, (o) => {
+				Approval approval = new Approval();
+				approval.Show();
+			});
+
 		}
 	}
 }
